@@ -7,9 +7,9 @@
     <slot v-if="top" name="top">
       <app-grid-toolbar
               v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top,
-                toolbar: this.$g.get(toolbar, 'pagination.top', false)}"
+                toolbar: $g.get(toolbar, 'pagination.top')}"
               @change-page="changePage" @change-limit="changeLimit"
-              :class='this.$g.get(toolbar, "pagination.top.className", "")'/>
+              :class='$g.get(toolbar, "pagination.top.className")'/>
     </slot>
     <hr v-if="top">
 
@@ -22,8 +22,10 @@
 
     <slot v-if="bottom" name="bottom">
       <app-grid-toolbar
-              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.bottom, toolbar: toolbar.pagination.bottom}"
-              @change-page="changePage" @change-limit="changeLimit" :class='toolbar.pagination.bottom.className'/>
+              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.bottom,
+              toolbar: $g.get(toolbar, 'toolbar.pagination.bottom')}"
+              @change-page="changePage" @change-limit="changeLimit"
+              :class='$g.get(toolbar, "pagination.bottom.className")'/>
     </slot>
 
     <slot name="footer"/>

@@ -1,24 +1,29 @@
 <template>
   <div class="app-form-wizard">
     <q-stepper v-model="currentStep" ref="stepper">
-      <q-step v-for="step in steps" :name="step.name"
+      <q-step v-for="(step, index) in steps" :name="step.name" :order="index"
               :key="step.name" :title="step.title" :subtitle="step.subtitle" :icon="step.icon">
         <div class="form">
           <component v-for="schema in components[step.name]" :key="schema.field" :is="schema.component"
                      v-bind="schema" v-model="record[schema.field]"
                      @input="formInput(schema.field, arguments)" @event="formEvent"></component>
         </div>
-        <q-stepper-navigation>
-          <q-btn :disable="step.navigation.back === ''"
-                 outline small color="primary" @click="currentStep = step.navigation.back">Voltar</q-btn>
-          <q-btn  :disable="step.navigation.next === ''"
-                  outline small color="primary" @click="currentStep = step.navigation.next">Avançar</q-btn>
+        <q-stepper-navigation v-if="$g.get(step, 'navigation.show')">
+          <q-btn v-bind="$g.get(step, 'navigation.props')"
+                 :disable="$g.get(step, 'navigation.back') === ''"
+                 @click="currentStep = $g.get(step, 'navigation.back')">Voltar</q-btn>
+          <q-btn v-bind="$g.get(step, 'navigation.props')"
+                 :disable="$g.get(step, 'navigation.next') === ''"
+                 @click="currentStep = step.navigation.next">Avançar</q-btn>
+          <q-btn v-bind="$g.get(step, 'navigation.props')"
+                 :disable="$g.get(step, 'navigation.next') === ''"
+                 @click="teste">Salvar</q-btn>
         </q-stepper-navigation>
       </q-step>
-      <q-stepper-navigation>
+      <!--<q-stepper-navigation>
         <q-btn flat @click="$refs.stepper.previous()">Back</q-btn>
         <q-btn @click="$refs.stepper.next()">Next</q-btn>
-      </q-stepper-navigation>
+      </q-stepper-navigation>-->
     </q-stepper>
   </div>
 </template>
@@ -29,6 +34,17 @@
   export default {
     name: 'app-form-wizard',
     extends: appForm,
+    methods: {
+      nextStep () {
+        this.$refs.stepper.next()
+      },
+      previousStep () {
+        this.$refs.stepper.previous()
+      },
+      teste () {
+        console.log(this)
+      }
+    },
     created () {
       this.currentStep = this.step
       if (!this.currentStep) {
