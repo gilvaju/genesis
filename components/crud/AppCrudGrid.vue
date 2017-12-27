@@ -6,8 +6,10 @@
 
     <slot v-if="top" name="top">
       <app-grid-toolbar
-              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top, toolbar: toolbar.pagination.top}"
-              @change-page="changePage" @change-limit="changeLimit" :class='toolbar.pagination.top.className'/>
+              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top,
+                toolbar: this.$g.get(toolbar, 'pagination.top', false)}"
+              @change-page="changePage" @change-limit="changeLimit"
+              :class='this.$g.get(toolbar, "pagination.top.className", "")'/>
     </slot>
     <hr v-if="top">
 

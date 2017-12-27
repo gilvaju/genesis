@@ -1,11 +1,13 @@
 <template>
-  <div class="app-form">
+  <div class="app-form-wizard">
     <q-stepper v-model="currentStep" ref="stepper">
       <q-step v-for="step in steps" :name="step.name"
               :key="step.name" :title="step.title" :subtitle="step.subtitle" :icon="step.icon">
-        <component v-for="schema in components[step.name]" :key="schema.field" :is="schema.component"
-                   v-bind="schema" v-model="record[schema.field]"
-                   @input="formInput(schema.field, arguments)" @event="formEvent"></component>
+        <div class="form">
+          <component v-for="schema in components[step.name]" :key="schema.field" :is="schema.component"
+                     v-bind="schema" v-model="record[schema.field]"
+                     @input="formInput(schema.field, arguments)" @event="formEvent"></component>
+        </div>
         <q-stepper-navigation>
           <q-btn :disable="step.navigation.back === ''"
                  outline small color="primary" @click="currentStep = step.navigation.back">Voltar</q-btn>
@@ -23,8 +25,9 @@
 
 <script type="text/javascript">
   import appForm from './AppForm'
+
   export default {
-    name: 'app-wizard',
+    name: 'app-form-wizard',
     extends: appForm,
     created () {
       this.currentStep = this.step
