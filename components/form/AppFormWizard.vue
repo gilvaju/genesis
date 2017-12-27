@@ -15,9 +15,6 @@
           <q-btn v-bind="$g.get(step, 'navigation.props')"
                  :disable="$g.get(step, 'navigation.next') === ''"
                  @click="currentStep = step.navigation.next">Avançar</q-btn>
-          <q-btn v-bind="$g.get(step, 'navigation.props')"
-                 :disable="$g.get(step, 'navigation.next') === ''"
-                 @click="teste">Salvar</q-btn>
         </q-stepper-navigation>
       </q-step>
       <!--<q-stepper-navigation>
@@ -40,9 +37,6 @@
       },
       previousStep () {
         this.$refs.stepper.previous()
-      },
-      teste () {
-        console.log(this)
       }
     },
     created () {
