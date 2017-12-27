@@ -1,5 +1,6 @@
 <template>
-  <q-btn :icon="inherit" v-bind="{color, round, outline, flat, small}" :class="{'raised': raised, 'rotate': rotate}"
+  <q-btn :icon="inherit" v-bind="{color, round, outline, flat, small, 'disabled': disable}"
+         :class="{'raised': raised, 'rotate': rotate}"
          @click="$emit('click')">
     <span v-if="label" v-html="label"></span>
     <q-icon v-else :name="icon"></q-icon>
@@ -19,6 +20,10 @@
       id: {
         type: String,
         default: () => ''
+      },
+      disable: {
+        type: Boolean,
+        default: () => false
       },
       permission: {
         default: () => 0
