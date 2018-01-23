@@ -4,7 +4,7 @@
       <q-tab v-for="tab in tabs" :key="tab.name" slot="title" v-bind="tab"/>
     </q-tabs>
     <div class="tab-content form" v-for="tab in tabs" v-show="tab.name === tabSeletecd">
-      <component v-for="schema in components[tab.name]" :key="schema.field" :is="schema.component"
+      <component v-for="schema in componentsForTabs[tab.name]" :key="schema.field" :is="schema.component"
                  v-bind="schema" v-model="record[schema.field]"
                  @input="formInput(schema.field, arguments)" @event="formEvent"></component>
     </div>

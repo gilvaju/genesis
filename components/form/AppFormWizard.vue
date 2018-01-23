@@ -4,7 +4,7 @@
       <q-step v-for="(step, index) in steps" :name="step.name" :order="index"
               :key="step.name" :title="step.title" :subtitle="step.subtitle" :icon="step.icon">
         <div class="form">
-          <component v-for="schema in components[step.name]" :key="schema.field" :is="schema.component"
+          <component v-for="schema in componentsForWizard[step.name]" :key="schema.field" :is="schema.component"
                      v-bind="schema" v-model="record[schema.field]"
                      @input="formInput(schema.field, arguments)" @event="formEvent"></component>
         </div>

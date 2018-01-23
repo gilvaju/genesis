@@ -52,18 +52,22 @@ export default {
     /**
      */
     updateComponents () {
-      const components = {}
+      const componentsForTabs = {}
       if (this.tabs.length) {
         this.tabs.forEach(tab => {
-          components[tab.name] = this.fields.filter(field => field.tab === tab.name).reduce(arrayToObject, {})
+          componentsForTabs[tab.name] = this.fields
+            .filter(field => field.tab === tab.name).reduce(arrayToObject, {})
         })
       }
+      const componentsForWizard = {}
       if (this.steps.length) {
         this.steps.forEach(step => {
-          components[step.name] = this.fields.filter(field => field.step === step.name).reduce(arrayToObject, {})
+          componentsForWizard[step.name] = this.fields
+            .filter(field => field.step === step.name).reduce(arrayToObject, {})
         })
       }
-      this.components = components
+      this.componentsForTabs = componentsForTabs
+      this.componentsForWizard = componentsForWizard
     },
     /**
      */
