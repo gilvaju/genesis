@@ -1,6 +1,9 @@
 export default {
   data: () => ({
-    components: {},
+    components: {
+      steps: {},
+      tabs: {}
+    },
     schemas: {},
     record: {},
     tabSeletecd: '',
