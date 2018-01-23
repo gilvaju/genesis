@@ -25,21 +25,6 @@
       if (this.$route.query.tab) {
         this.tabSeletecd = this.$route.query.tab
       }
-    },
-    methods: {
-      arrayToObject (accumulate, item) {
-        accumulate[item.field] = item
-        return accumulate
-      },
-      updateComponents () {
-        const components = {}
-        if (this.tabs.length) {
-          this.tabs.forEach(tab => {
-            components[tab.name] = this.fields.filter(field => field.tab === tab.name).reduce(this.arrayToObject, {})
-          })
-        }
-        this.components = components
-      }
     }
   }
 </script>

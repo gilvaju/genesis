@@ -47,21 +47,6 @@
       if (this.$route.query.step) {
         this.currentStep = this.$route.query.step
       }
-    },
-    methods: {
-      arrayToObject (accumulate, item) {
-        accumulate[item.field] = item
-        return accumulate
-      },
-      updateComponents () {
-        const components = {}
-        if (this.steps.length) {
-          this.steps.forEach(step => {
-            components[step.name] = this.fields.filter(field => field.step === step.name).reduce(this.arrayToObject, {})
-          })
-        }
-        this.components = components
-      }
     }
   }
 </script>
