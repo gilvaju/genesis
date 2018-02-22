@@ -11,7 +11,7 @@ import configure from './configure'
  */
 const HEADERS = {
   'Accept': 'application/json',
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json;charset=UTF-8'
 }
 
 /**
